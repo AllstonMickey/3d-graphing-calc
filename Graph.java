@@ -1,7 +1,11 @@
 import java.util.*;
 import java.io.*;
-import java.awt.Graphics;
 import java.lang.Math;
+
+/*
+ * Written by Kai Ergin
+ * Last updated: 10/20/2016
+ */
 
 class Graph{
 	public static void main(String[] args){
