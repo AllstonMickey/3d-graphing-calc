@@ -27,9 +27,6 @@ class Graph{
 		}
 		return false;
 	}
-	/*public static boolean placeFUnctions(Line check){
-		
-	}*/
 	public static Line[][] genScreen(double x, double y, boolean zside){
 		if(Math.sqrt(x*x+y*y)>=1){
 			System.out.println("Error in your numbers");
