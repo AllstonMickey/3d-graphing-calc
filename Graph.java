@@ -14,9 +14,9 @@ class Graph{
 		double c = -1*check.pVector[2]/check.dVector[2];
 		if(Math.abs(a-b)<=.002 && Math.abs(a)<=2 && Math.abs(b)<=2){
 			return true;
-		} else if(Math.abs(b-c)<=.002 && Math.abs(b)<=2 && Math.abs(c)<=2){
+		} else if(Math.abs(b-c)<=.008 && Math.abs(b)<=2 && Math.abs(c)<=2){
 			return true;
-		} else if(Math.abs(c-a)<=.002 && Math.abs(a)<=2 && Math.abs(c)<=2){
+		} else if(Math.abs(c-a)<=.008 && Math.abs(a)<=2 && Math.abs(c)<=2){
 			return true;
 		}
 		return false;
