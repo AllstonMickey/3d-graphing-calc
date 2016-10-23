@@ -8,12 +8,6 @@ import java.lang.Math;
  */
 
 class Graph{
-	public static void main(String[] args){
-		double x = Double.parseDouble(args[0]);
-		double y = Double.parseDouble(args[1]);
-		boolean zside = Boolean.parseBoolean(args[2]);
-		Line[][] myLines = genScreen(x,y,zside);
-	}
 	public static boolean placeAxis(Line check){
 		double a = -1*check.pVector[0]/check.dVector[0];
 		double b = -1*check.pVector[1]/check.dVector[1];
@@ -44,7 +38,6 @@ class Graph{
 		double d = (-1)*fx*x + (-1)*fy*y + z;
 		double[] normVector = {-fx,-fy,1};
 		Line[][] vectors = new Line[500][500];
-		int count = 0;
 		for(int a=0;a<500;a++){
 			for(int b=0;b<500;b++){
 				double i = ((double)(a-250)/(double)(250 * Math.sqrt(1+fx*fx)))+x;
@@ -52,16 +45,8 @@ class Graph{
 				double k = d + fx*i + fy*j;
 				double[] arg = {i,j,k};
 				vectors[a][b] = new Line(normVector,arg);
-				//System.out.println(vectors[a][b].pVector[0] + " " + vectors[a][b].pVector[1] + " " + vectors[a][b].pVector[2]);
-				if(placeAxis(vectors[a][b])){
-					count++;
-					System.out.println(vectors[a][b].pVector[0] + " " + vectors[a][b].pVector[1] + " " + vectors[a][b].pVector[2]);
-					System.out.println(a + " " + b);
-				}
 			}
 		}
-		System.out.println(vectors[0][0].dVector[0] + " " + vectors[0][0].dVector[1] + " " + vectors[0][0].dVector[2]);
-		System.out.println(count);
 		return vectors;
 	}
 }
