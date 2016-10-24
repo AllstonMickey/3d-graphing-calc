@@ -7,40 +7,12 @@ import java.awt.geom.Line2D;
 import java.awt.geom.Point2D;
 import javax.swing.*;  
 
-public class Gui extends JPanel {
-	protected static final int H = 500, W = 500; // height and width of the graphics window
-	protected static double myGraphX = 0.25, myGraphY = 0.25; // x and y coords of the graph viewing angle
-	protected static boolean zIsTop = true; // viewing angle is on top of the sphere (true)
-	public static JFrame f = new JFrame(); // creates Gui object
-	public static int count = 0;
+public class Gui extends Window {
+	private static double myGraphX = 0.25, myGraphY = 0.25; // x and y coords of the graph viewing angle
+	private static boolean zIsTop = true; // viewing angle is on top of the sphere (true)
 	
-	public static void main(String[] args) {
-		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE); // enables close window operation
-		f.add(new Gui());
-		f.setSize(W, H);
-		f.setLocation((1920-W)/2, (1080-H)/2);
-		f.setResizable(false);
-		f.setVisible(true);
-		initKeyBinds();
-	}
-	
-	/* EXAMPLE OF A NEW COMPONENT
-	public void drawRectangle(Rectangle newR, Stroke stroke, Color c){
-	    recs.add(newR);
-	    strokes.add(stroke);
-	    Color.add(c);
-	}
-	protected void paintComponent(Graphics g){
-    	super.paintComponent(g);
-    	for (int i = 0; i < recs.size(); i ++) {
-        	g.setColor(colors.get(i));
-        	g.setStroke(strokes.get(i));
-        	g.drawRectangle(recs);
-    	}
-	}
-	*/
-	public void drawAxes() {
-
+	public Gui() {
+		initKeyBinds(getFrame());
 	}
 	
 	protected void paintComponent(Graphics g) {
@@ -48,31 +20,19 @@ public class Gui extends JPanel {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(new Color(255, 255, 255));
-		g2d.fillRect(0, 0, W, H); // creates background
+		g2d.fillRect(0, 0, getWindowWidth(), getWindowHeight()); // creates background
 		
-		/* draw axes - OLD
-		g2d.setColor(new Color(0, 0, 0));
-		g2d.draw(new Line2D.Double(W/2, H/2, W, H/2)); // +y
-		g2d.draw(new Line2D.Double(W/2, H/2, 0, H)); // +x
-		g2d.draw(new Line2D.Double(W/2, H/2, W/2, 0)); // +z
-		g2d.setColor(new Color(225, 225, 225));
-		g2d.draw(new Line2D.Double(W/2, H/2, 0, H/2)); // -y
-		g2d.draw(new Line2D.Double(W/2, H/2, W, 0)); // -x
-		g2d.draw(new Line2D.Double(W/2, H/2, W/2, H)); // -z
-		*/
-		
-			
-		boolean[][] pixelState = new boolean[W][H]; // which pixels on the screen are on/off
+		boolean[][] pixelState = new boolean[getWindowWidth()][getWindowHeight()]; // which pixels on the screen are on/off
 		Graph myGraph = new Graph();
 		Line[][] myLines = myGraph.genScreen(myGraphX, myGraphY, zIsTop); // generates which pixels are on/off
-		
+        
 		/* draws axes
 		 * y: red
 		 * x: green
 		 * z: blue
 		 */
-		for (int x = 0; x < W; ++x) {
-			for (int y = 0; y < W; ++y) {
+        for (int x = 0; x < getWindowWidth(); ++x) {
+			for (int y = 0; y < getWindowHeight(); ++y) {
 				if (myGraph.placeY(myLines[x][y])) {
 					g2d.setColor(new Color(200, 0, 0));
 					g2d.draw(new Line2D.Double(x, y, x, y));
@@ -87,7 +47,7 @@ public class Gui extends JPanel {
 		}
 	}
 	
-	private static void initKeyBinds() {
+	private static void initKeyBinds(JFrame f) {
 		boolean onKeyRelease = false;
 		// binds ESC to "TEST!" as an example 
 		KeyStroke escKeyStr = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, onKeyRelease);
@@ -168,9 +128,44 @@ public class Gui extends JPanel {
 		f.getRootPane().getActionMap().put("LEFT", leftAction);
 		
 		// redraws the Gui upon keypress
-		f.invalidate();
-		f.revalidate();
 		f.repaint();
 	}
+
+	/* EXAMPLE OF A NEW COMPONENT
+	public void drawRectangle(Rectangle newR, Stroke stroke, Color c){
+	    recs.add(newR);
+	    strokes.add(stroke);
+	    Color.add(c);
+	}
+	protected void paintComponent(Graphics g){
+    	super.paintComponent(g);
+    	for (int i = 0; i < recs.size(); i ++) {
+        	g.setColor(colors.get(i));
+        	g.setStroke(strokes.get(i));
+        	g.drawRectangle(recs);
+    	}
+	}
+	*/
 	
+	/*
+	public void drawAxes(Graphics2D g) {
+        boolean[][] pixelState = new boolean[W][H]; // which pixels on the screen are on/off
+		Graph myGraph = new Graph();
+		Line[][] myLines = myGraph.genScreen(myGraphX, myGraphY, zIsTop); // generates which pixels are on/off
+        for (int x = 0; x < W; ++x) {
+			for (int y = 0; y < W; ++y) {
+				if (myGraph.placeY(myLines[x][y])) {
+					g.setColor(new Color(200, 0, 0));
+					g.draw(new Line2D.Double(x, y, x, y));
+				} else if (myGraph.placeX(myLines[x][y])) {
+					g.setColor(new Color(0, 200, 0));
+					g.draw(new Line2D.Double(x, y, x, y));
+				} else if (myGraph.placeZ(myLines[x][y])) {
+					g.setColor(new Color(0, 0, 200));
+					g.draw(new Line2D.Double(x, y, x, y));
+				}
+			}
+		}
+	}
+	*/
 }
