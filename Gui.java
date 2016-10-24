@@ -40,7 +40,7 @@ public class Gui extends JPanel {
 		
 		Graph mygraph = new Graph();
 		
-		Line[][] mylines = mygraph.genScreen(.2,.3,true);
+		Line[][] mylines = mygraph.genScreen(.5,.5,true);
 		
 		for (int x = 0; x < W; ++x) {
 			for (int y = 0; y < W; ++y) {

@@ -4,7 +4,6 @@ import java.lang.Math;
 
 /*
  * Written by Kai Ergin
- * Last updated: 10/21/2016
  */
 
 public class Graph{
@@ -24,7 +23,7 @@ public class Graph{
 		double a = -1*check.pVector[0]/check.dVector[0];
 		double b = -1*check.pVector[1]/check.dVector[1];
 		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(b-c)<=.002 && Math.abs(b)<=1.5 && Math.abs(c)<=1.5 && Math.abs(b)>=.5 && Math.abs(c)>=.5){
+		if(Math.abs(b-c)<=.002/Math.sqrt(1+check.dVector[0]*check.dVector[0])/* && Math.abs(b)<=1.5 && Math.abs(c)<=1.5 && Math.abs(b)>=.5 && Math.abs(c)>=.5*/){
 			return true;
 		}
 		return false;
@@ -33,7 +32,7 @@ public class Graph{
 		double a = -1*check.pVector[0]/check.dVector[0];
 		double b = -1*check.pVector[1]/check.dVector[1];
 		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(c-a)<=.002 && Math.abs(a)<=1.5 && Math.abs(c)<=1.5 && Math.abs(a)>=.5 && Math.abs(c)>=.5){
+		if(Math.abs(c-a)<=.002/Math.sqrt(1+check.dVector[1]*check.dVector[1])/* && Math.abs(a)<=1.5 && Math.abs(c)<=1.5 && Math.abs(a)>=.5 && Math.abs(c)>=.5*/){
 			return true;
 		}
 		return false;
@@ -42,7 +41,7 @@ public class Graph{
 		double a = -1*check.pVector[0]/check.dVector[0];
 		double b = -1*check.pVector[1]/check.dVector[1];
 		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(a-b)<=.002 && Math.abs(a)<=1.5 && Math.abs(b)<=1.5 && Math.abs(a)>=.5 && Math.abs(c)>=.5){
+		if(Math.abs(a-b)<=.002/Math.sqrt(1+check.dVector[2]*check.dVector[2])/* && Math.abs(a)<=1.5 && Math.abs(b)<=1.5 && Math.abs(a)>=.5 && Math.abs(c)>=.5*/){
 			return true;
 		}
 		return false;
