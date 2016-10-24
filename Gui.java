@@ -40,19 +40,21 @@ public class Gui extends JPanel {
 		
 		Graph mygraph = new Graph();
 		
-		Line[][] mylines = mygraph.genScreen(.25,.25,false);
-		for(int a = 0;a<500;a++){
-			for(int b = 0;b<500;b++){
-				pixelState[a][b] = mygraph.placeAxis(mylines[a][b]);
-			}
-		}
+		Line[][] mylines = mygraph.genScreen(.2,.3,true);
 		
 		for (int x = 0; x < W; ++x) {
 			for (int y = 0; y < W; ++y) {
-				if (pixelState[x][y]) {
+				if (mygraph.placeY(mylines[x][y])) {
 					g2d.setColor(new Color(200, 0, 0));
 					g2d.draw(new Line2D.Double(x, y, x, y));
+				}else if (mygraph.placeX(mylines[x][y])) {
+					g2d.setColor(new Color(0, 200, 0));
+					g2d.draw(new Line2D.Double(x, y, x, y));
+				}else if (mygraph.placeZ(mylines[x][y])) {
+					g2d.setColor(new Color(0, 0, 200));
+					g2d.draw(new Line2D.Double(x, y, x, y));
 				}
+				
 			}
 		}
 		

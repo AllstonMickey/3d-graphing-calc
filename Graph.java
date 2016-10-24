@@ -8,15 +8,41 @@ import java.lang.Math;
  */
 
 class Graph{
-	public static boolean placeAxis(Line check){
+	public static boolean placeParabaloid(Line check){
+		/*
+		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
+		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.dVector[1] - check.dVector[2];
+		double k = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - check.pVector[2];
+		if(j*j - 4*i*k<0){
+			return false;
+		} else if(Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i))<=10 || Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i))<=10){
+			return true;
+		}*/
+		return false;
+	}
+	public static boolean placeX(Line check){
 		double a = -1*check.pVector[0]/check.dVector[0];
 		double b = -1*check.pVector[1]/check.dVector[1];
 		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(a-b)<=.002 && Math.abs(a)<=2 && Math.abs(b)<=2){
+		if(Math.abs(b-c)<=.008 && Math.abs(b)<=2 && Math.abs(c)<=2){
 			return true;
-		} else if(Math.abs(b-c)<=.008 && Math.abs(b)<=2 && Math.abs(c)<=2){
+		}
+		return false;
+	}
+	public static boolean placeY(Line check){
+		double a = -1*check.pVector[0]/check.dVector[0];
+		double b = -1*check.pVector[1]/check.dVector[1];
+		double c = -1*check.pVector[2]/check.dVector[2];
+		if(Math.abs(c-a)<=.008 && Math.abs(a)<=2 && Math.abs(c)<=2){
 			return true;
-		} else if(Math.abs(c-a)<=.008 && Math.abs(a)<=2 && Math.abs(c)<=2){
+		}
+		return false;
+	}
+	public static boolean placeZ(Line check){
+		double a = -1*check.pVector[0]/check.dVector[0];
+		double b = -1*check.pVector[1]/check.dVector[1];
+		double c = -1*check.pVector[2]/check.dVector[2];
+		if(Math.abs(a-b)<=.008 && Math.abs(a)<=2 && Math.abs(b)<=2){
 			return true;
 		}
 		return false;
