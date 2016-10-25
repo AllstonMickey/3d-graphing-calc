@@ -1,3 +1,9 @@
+/** bugs to fix:
+ * a combination of incrementing x and y and then reaching the
+ * limit of x or y causing the program to exit.
+ * (from System.exit(0) in genScreen() in Graph.java)
+ */
+
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -70,6 +76,8 @@ public class Gui extends Window {
 			@Override public void actionPerformed(ActionEvent e) {
 				zIsTop = !zIsTop;
 				System.out.println("z side switched");
+				// redraws the Gui upon keypress
+				f.repaint();
 			}
 		};
 		f.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(spaceKeyStr, "SPACE");
@@ -80,9 +88,16 @@ public class Gui extends Window {
 		Action upAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				myGraphY += 0.05;
-				System.out.println("y: " + myGraphY);
-				System.out.println("y incremented");
+				System.out.println("myGraphX: " + myGraphX);
+				System.out.println("myGraphY: " + myGraphY);
+				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
+				if (myGraphY < 1 - 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+					myGraphY += 0.05;
+					System.out.println("y: " + myGraphY);
+					System.out.println("y incremented");
+					// redraws the Gui upon keypress
+				f.repaint();
+				}
 			}
 		};
 		f.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(upKeyStr, "UP");
@@ -93,9 +108,17 @@ public class Gui extends Window {
 		Action downAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				myGraphY -= 0.05;
-				System.out.println("y: " + myGraphY);
-				System.out.println("y decremented");
+				System.out.println("myGraphX: " + myGraphX);
+				System.out.println("myGraphY: " + myGraphY);
+				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
+				// ** move all the way to the left then it won't move right/up/down.
+				if (myGraphY > -1 + 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+					myGraphY -= 0.05;
+					System.out.println("y: " + myGraphY);
+					System.out.println("y decremented");
+					// redraws the Gui upon keypress
+					f.repaint();
+				}
 			}
 		};
 		f.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(downKeyStr, "DOWN");
@@ -106,9 +129,16 @@ public class Gui extends Window {
 		Action rightAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				myGraphX += 0.05;
-				System.out.println("x: " + myGraphX);
-				System.out.println("x incremented");
+				System.out.println("myGraphX: " + myGraphX);
+				System.out.println("myGraphY: " + myGraphY);
+				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
+				if (myGraphX < 1 - 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+					myGraphX += 0.05;
+					System.out.println("x: " + myGraphX);
+					System.out.println("x incremented");
+					// redraws the Gui upon keypress
+					f.repaint();
+				}
 			}
 		};
 		f.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(rightKeyStr, "RIGHT");
@@ -119,16 +149,21 @@ public class Gui extends Window {
 		Action leftAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				myGraphX -= 0.05;
-				System.out.println("x: " + myGraphX);
-				System.out.println("x decremented");
+				System.out.println("myGraphX: " + myGraphX);
+				System.out.println("myGraphY: " + myGraphY);
+				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
+				if (myGraphX > -1 + 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+					myGraphX -= 0.05;
+					System.out.println("x: " + myGraphX);
+					System.out.println("x decremented");
+					// redraws the Gui upon keypress
+					f.repaint();
+				}
 			}
 		};
 		f.getRootPane().getInputMap(JComponent.WHEN_IN_FOCUSED_WINDOW).put(leftKeyStr, "LEFT");
 		f.getRootPane().getActionMap().put("LEFT", leftAction);
 		
-		// redraws the Gui upon keypress
-		f.repaint();
 	}
 
 	/* EXAMPLE OF A NEW COMPONENT
