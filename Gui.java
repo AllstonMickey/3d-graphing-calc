@@ -26,7 +26,6 @@ public class Gui extends Window {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(new Color(255, 255, 255));
-<<<<<<< HEAD
 		g2d.fillRect(0, 0, W, H);		
 		// draw axes
 		/*
@@ -58,7 +57,6 @@ public class Gui extends Window {
 				}else if (mygraph.placeZ(mylines[x][y])) {
 					g2d.setColor(new Color(0, 0, 200));
 					g2d.draw(new Line2D.Double(x, y, x, y));
-=======
 		g2d.fillRect(0, 0, getWindowWidth(), getWindowHeight()); // creates background
 		
 		boolean[][] pixelState = new boolean[getWindowWidth()][getWindowHeight()]; // which pixels on the screen are on/off
@@ -231,15 +229,10 @@ public class Gui extends Window {
 				} else if (myGraph.placeZ(myLines[x][y])) {
 					g.setColor(new Color(0, 0, 200));
 					g.draw(new Line2D.Double(x, y, x, y));
->>>>>>> 0ce248aa93affca4114b0568e7abc6825fbfd5cb
 				}
 				
 			}
 		}
-<<<<<<< HEAD
-		
-=======
->>>>>>> 0ce248aa93affca4114b0568e7abc6825fbfd5cb
 	}
 	*/
 }
