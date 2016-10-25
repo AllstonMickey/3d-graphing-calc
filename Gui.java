@@ -42,6 +42,9 @@ public class Gui extends Window {
 				} else if (myGraph.placeZ(myLines[x][y])) {
 					g2d.setColor(new Color(0, 0, 200));
 					g2d.draw(new Line2D.Double(x, y, x, y));
+				} else if (myGraph.placePara(myLines[x][y])){
+					g2d.setColor(new Color(100, 100, 100));
+					g2d.draw(new Line2D.Double(x, y, x, y));
 				}
 			}
 		}

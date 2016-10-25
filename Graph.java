@@ -7,16 +7,15 @@ import java.lang.Math;
  */
 
 public class Graph{
-	public static boolean placeParabaloid(Line check){
-		/*
+	public static boolean placePara(Line check){
 		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
-		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.dVector[1] - check.dVector[2];
+		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1] - check.dVector[2];
 		double k = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - check.pVector[2];
 		if(j*j - 4*i*k<0){
 			return false;
-		} else if(Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i))<=10 || Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i))<=10){
+		} else if(Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i))<=1 || Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i))<=1){
 			return true;
-		}*/
+		}
 		return false;
 	}
 	// Uses cylinders instead of lines to graph axes
