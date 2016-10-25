@@ -56,6 +56,7 @@ public class Gui extends Window {
 	}
 	
 	private static void initKeyBinds(JFrame f) {
+		double t = 0.05; // tolerance value
 		boolean onKeyRelease = false;
 		// binds ESC to "TEST!" as an example 
 		KeyStroke escKeyStr = KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0, onKeyRelease);
@@ -93,7 +94,7 @@ public class Gui extends Window {
 				System.out.println("myGraphX: " + myGraphX);
 				System.out.println("myGraphY: " + myGraphY);
 				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
-				if (myGraphY < 1 - 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+				if (myGraphY < 1 - t && Math.sqrt(myGraphX*myGraphX + (myGraphY+t)*(myGraphY+t)) < 1) {
 					myGraphY += 0.05;
 					System.out.println("y: " + myGraphY);
 					System.out.println("y incremented");
@@ -114,7 +115,7 @@ public class Gui extends Window {
 				System.out.println("myGraphY: " + myGraphY);
 				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
 				// ** move all the way to the left then it won't move right/up/down.
-				if (myGraphY > -1 + 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+				if (myGraphY > -1 + 0.05 && Math.sqrt(myGraphX*myGraphX + (myGraphY-t)*(myGraphY-t)) < 1) {
 					myGraphY -= 0.05;
 					System.out.println("y: " + myGraphY);
 					System.out.println("y decremented");
@@ -134,7 +135,7 @@ public class Gui extends Window {
 				System.out.println("myGraphX: " + myGraphX);
 				System.out.println("myGraphY: " + myGraphY);
 				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
-				if (myGraphX < 1 - 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+				if (myGraphX < 1 - 0.05 && Math.sqrt((myGraphX+t)*(myGraphX+t) + myGraphY*myGraphY) < 1) {
 					myGraphX += 0.05;
 					System.out.println("x: " + myGraphX);
 					System.out.println("x incremented");
@@ -154,7 +155,7 @@ public class Gui extends Window {
 				System.out.println("myGraphX: " + myGraphX);
 				System.out.println("myGraphY: " + myGraphY);
 				System.out.println("sqrt: " + Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY));
-				if (myGraphX > -1 + 0.05 || Math.sqrt(myGraphX*myGraphX + myGraphY*myGraphY) < 1 - 0.05) {
+				if (myGraphX > -1 + 0.05 && Math.sqrt((myGraphX-t)*(myGraphX-t) + myGraphY*myGraphY) < 1) {
 					myGraphX -= 0.05;
 					System.out.println("x: " + myGraphX);
 					System.out.println("x decremented");
