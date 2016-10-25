@@ -2,6 +2,8 @@
  * a combination of incrementing x and y and then reaching the
  * limit of x or y causing the program to exit.
  * (from System.exit(0) in genScreen() in Graph.java)
+ * 
+ * verified merge conflict.
  */
 
 import java.awt.Color;
