@@ -199,7 +199,6 @@ public class Gui extends Window {
 					g.setColor(new Color(0, 0, 200));
 					g.draw(new Line2D.Double(x, y, x, y));
 				}
-				
 			}
 		}
 	}
