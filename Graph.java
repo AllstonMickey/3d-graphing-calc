@@ -19,29 +19,30 @@ public class Graph{
 		}*/
 		return false;
 	}
+	// Uses cylinders instead of lines to graph axes
 	public static boolean placeX(Line check){
-		double a = -1*check.pVector[0]/check.dVector[0];
-		double b = -1*check.pVector[1]/check.dVector[1];
-		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(b-c)<=.002/Math.sqrt(1+check.dVector[0]*check.dVector[0])/* && Math.abs(b)<=1.5 && Math.abs(c)<=1.5 && Math.abs(b)>=.5 && Math.abs(c)>=.5*/){
+		double a = check.dVector[1]*check.dVector[1] + check.dVector[2]*check.dVector[2];
+		double b = 2*check.dVector[1]*check.pVector[1] + 2*check.dVector[2]*check.pVector[2];
+		double c = check.pVector[1]*check.pVector[1] + check.pVector[2]*check.pVector[2] - .00001;
+		if(b*b - 4*a*c > 0){
 			return true;
 		}
 		return false;
 	}
 	public static boolean placeY(Line check){
-		double a = -1*check.pVector[0]/check.dVector[0];
-		double b = -1*check.pVector[1]/check.dVector[1];
-		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(c-a)<=.002/Math.sqrt(1+check.dVector[1]*check.dVector[1])/* && Math.abs(a)<=1.5 && Math.abs(c)<=1.5 && Math.abs(a)>=.5 && Math.abs(c)>=.5*/){
+		double a = check.dVector[0]*check.dVector[0] + check.dVector[2]*check.dVector[2];
+		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[2]*check.pVector[2];
+		double c = check.pVector[0]*check.pVector[0] + check.pVector[2]*check.pVector[2] - .00001;
+		if(b*b - 4*a*c > 0){
 			return true;
 		}
 		return false;
 	}
 	public static boolean placeZ(Line check){
-		double a = -1*check.pVector[0]/check.dVector[0];
-		double b = -1*check.pVector[1]/check.dVector[1];
-		double c = -1*check.pVector[2]/check.dVector[2];
-		if(Math.abs(a-b)<=.002/Math.sqrt(1+check.dVector[2]*check.dVector[2])/* && Math.abs(a)<=1.5 && Math.abs(b)<=1.5 && Math.abs(a)>=.5 && Math.abs(c)>=.5*/){
+		double a = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
+		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1];
+		double c = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - .00001;
+		if(b*b - 4*a*c > 0){
 			return true;
 		}
 		return false;
