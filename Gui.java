@@ -26,37 +26,6 @@ public class Gui extends Window {
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(new Color(255, 255, 255));
-		g2d.fillRect(0, 0, W, H);		
-		// draw axes
-		/*
-		g2d.setColor(new Color(0, 0, 0));
-		g2d.draw(new Line2D.Double(W/2, H/2, W, H/2)); // +y
-		g2d.draw(new Line2D.Double(W/2, H/2, 0, H)); // +x
-		g2d.draw(new Line2D.Double(W/2, H/2, W/2, 0)); // +z
-		g2d.setColor(new Color(225, 225, 225));
-		g2d.draw(new Line2D.Double(W/2, H/2, 0, H/2)); // -y
-		g2d.draw(new Line2D.Double(W/2, H/2, W, 0)); // -x
-		g2d.draw(new Line2D.Double(W/2, H/2, W/2, H)); // -z
-		*/
-		
-				
-		boolean[][] pixelState = new boolean[W][H];
-		
-		Graph mygraph = new Graph();
-		
-		Line[][] mylines = mygraph.genScreen(.5,.5,true);
-		
-		for (int x = 0; x < W; ++x) {
-			for (int y = 0; y < W; ++y) {
-				if (mygraph.placeY(mylines[x][y])) {
-					g2d.setColor(new Color(200, 0, 0));
-					g2d.draw(new Line2D.Double(x, y, x, y));
-				}else if (mygraph.placeX(mylines[x][y])) {
-					g2d.setColor(new Color(0, 200, 0));
-					g2d.draw(new Line2D.Double(x, y, x, y));
-				}else if (mygraph.placeZ(mylines[x][y])) {
-					g2d.setColor(new Color(0, 0, 200));
-					g2d.draw(new Line2D.Double(x, y, x, y));
 		g2d.fillRect(0, 0, getWindowWidth(), getWindowHeight()); // creates background
 		
 		boolean[][] pixelState = new boolean[getWindowWidth()][getWindowHeight()]; // which pixels on the screen are on/off
