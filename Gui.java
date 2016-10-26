@@ -34,7 +34,11 @@ public class Gui extends Window {
         for (int x = 0; x < getWindowWidth(); ++x) {
 			for (int y = 0; y < getWindowHeight(); ++y) {
 				double paraNum = myGraph.placePara(myLines[x][y]);
-				if (myGraph.placeY(myLines[x][y])) {
+				if (paraNum>0){
+					int numColor = (int)Math.round(paraNum*200/1.5);
+					g2d.setColor(new Color(numColor,numColor,numColor));
+					g2d.draw(new Line2D.Double(x, y, x, y));
+				} else if (myGraph.placeY(myLines[x][y])) {
 					g2d.setColor(new Color(200, 0, 0));
 					g2d.draw(new Line2D.Double(x, y, x, y));
 				} else if (myGraph.placeX(myLines[x][y])) {
@@ -42,10 +46,6 @@ public class Gui extends Window {
 					g2d.draw(new Line2D.Double(x, y, x, y));
 				} else if (myGraph.placeZ(myLines[x][y])) {
 					g2d.setColor(new Color(0, 0, 200));
-					g2d.draw(new Line2D.Double(x, y, x, y));
-				} else if (paraNum>0){
-					int numColor = (int)Math.round(paraNum*200);
-					g2d.setColor(new Color(numColor,numColor,numColor));
 					g2d.draw(new Line2D.Double(x, y, x, y));
 				}
 			}

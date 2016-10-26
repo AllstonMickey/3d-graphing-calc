@@ -13,10 +13,10 @@ public class Graph{
 		double k = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - check.pVector[2];
 		if(j*j - 4*i*k<0){
 			return -1;
-		} else if(Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i))<=1){
-			return Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i));
-		} else if(Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i))<=1){
-			return Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i));
+		} else if((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i)<=1.5 && (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i)>=0.5){
+			return (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i);
+		} else if((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i)<=1.5 && (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i)>=0.5){
+			return (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i);
 		}
 		return -1;
 	}
@@ -25,7 +25,7 @@ public class Graph{
 		double a = check.dVector[1]*check.dVector[1] + check.dVector[2]*check.dVector[2];
 		double b = 2*check.dVector[1]*check.pVector[1] + 2*check.dVector[2]*check.pVector[2];
 		double c = check.pVector[1]*check.pVector[1] + check.pVector[2]*check.pVector[2] - .00001;
-		if(b*b - 4*a*c > 0){
+		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)>=0.5){
 			return true;
 		}
 		return false;
@@ -34,7 +34,7 @@ public class Graph{
 		double a = check.dVector[0]*check.dVector[0] + check.dVector[2]*check.dVector[2];
 		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[2]*check.pVector[2];
 		double c = check.pVector[0]*check.pVector[0] + check.pVector[2]*check.pVector[2] - .00001;
-		if(b*b - 4*a*c > 0){
+		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)>=0.5){
 			return true;
 		}
 		return false;
@@ -43,7 +43,7 @@ public class Graph{
 		double a = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1];
 		double c = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - .00001;
-		if(b*b - 4*a*c > 0){
+		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)>=0.5){
 			return true;
 		}
 		return false;
