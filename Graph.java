@@ -25,7 +25,7 @@ public class Graph{
 		double a = check.dVector[1]*check.dVector[1] + check.dVector[2]*check.dVector[2];
 		double b = 2*check.dVector[1]*check.pVector[1] + 2*check.dVector[2]*check.pVector[2];
 		double c = check.pVector[1]*check.pVector[1] + check.pVector[2]*check.pVector[2] - .00001;
-		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)>=0.5){
+		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5){
 			return true;
 		}
 		return false;
@@ -34,7 +34,7 @@ public class Graph{
 		double a = check.dVector[0]*check.dVector[0] + check.dVector[2]*check.dVector[2];
 		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[2]*check.pVector[2];
 		double c = check.pVector[0]*check.pVector[0] + check.pVector[2]*check.pVector[2] - .00001;
-		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)>=0.5){
+		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5){
 			return true;
 		}
 		return false;
@@ -43,7 +43,7 @@ public class Graph{
 		double a = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1];
 		double c = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - .00001;
-		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)>=0.5){
+		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5){
 			return true;
 		}
 		return false;
@@ -67,8 +67,8 @@ public class Graph{
 		Line[][] vectors = new Line[500][500];
 		for(int a=0;a<500;a++){
 			for(int b=0;b<500;b++){
-				double i = ((double)(a-250)/(double)(500 * Math.sqrt(1+fx*fx)))+x;
-				double j = ((double)(b-250)/(double)(500 * Math.sqrt(1+fy*fy)))+y;
+				double i = ((double)(a-250)/(double)(250 * Math.sqrt(1+fx*fx)))+x;
+				double j = ((double)(b-250)/(double)(250 * Math.sqrt(1+fy*fy)))+y;
 				double k = d + fx*i + fy*j;
 				double[] arg = {i,j,k};
 				vectors[a][b] = new Line(normVector,arg);
