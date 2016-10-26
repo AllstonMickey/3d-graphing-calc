@@ -7,16 +7,18 @@ import java.lang.Math;
  */
 
 public class Graph{
-	public static boolean placePara(Line check){
+	public static double placePara(Line check){
 		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1] - check.dVector[2];
 		double k = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - check.pVector[2];
 		if(j*j - 4*i*k<0){
-			return false;
-		} else if(Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i))<=1 || Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i))<=1){
-			return true;
+			return -1;
+		} else if(Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i))<=1){
+			return Math.abs((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i));
+		} else if(Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i))<=1){
+			return Math.abs((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i));
 		}
-		return false;
+		return -1;
 	}
 	// Uses cylinders instead of lines to graph axes
 	public static boolean placeX(Line check){
