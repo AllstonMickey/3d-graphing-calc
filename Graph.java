@@ -11,12 +11,31 @@ public class Graph{
 		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1] - check.dVector[2];
 		double k = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - check.pVector[2];
+		// Change so that the SMALLER t value is returned
 		if(j*j - 4*i*k<0){
 			return -1;
-		} else if((-1*j+Math.sqrt(j*j - 4*i*k))/(2*i)<=1.5 && (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i)>=0.5){
-			return (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i);
-		} else if((-1*j-Math.sqrt(j*j - 4*i*k))/(2*i)<=1.5 && (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i)>=0.5){
-			return (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i);
+		}
+		double a = (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i);
+		double b = (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i);
+		boolean aTrue = true;
+		boolean bTrue = true;
+		double t = .5;
+		if(Math.abs(a*check.dVector[0] + check.pVector[0]) >= t || Math.abs(a*check.dVector[1] + check.pVector[1]) >= t || Math.abs(a*check.dVector[2] + check.pVector[2]) >= t){
+			aTrue = false;
+		}
+		if(Math.abs(b*check.dVector[0] + check.pVector[0]) >= t || Math.abs(b*check.dVector[1] + check.pVector[1]) >= t || Math.abs(b*check.dVector[2] + check.pVector[2]) >= t){
+			aTrue = false;
+		}
+		if(a<b){
+			if(aTrue){
+				return a;
+			}
+		}
+		if(bTrue){
+			return b;
+		}
+		if(aTrue){
+			return a;
 		}
 		return -1;
 	}

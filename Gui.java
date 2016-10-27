@@ -35,7 +35,8 @@ public class Gui extends Window {
 			for (int y = 0; y < getWindowHeight(); ++y) {
 				double paraNum = myGraph.placePara(myLines[x][y]);
 				if (paraNum>0){
-					int numColor = (int)Math.round(paraNum*200/1.5);
+					int numColor = (int)Math.round(255-(paraNum*200/2));
+					numColor = 100;
 					g2d.setColor(new Color(numColor,numColor,numColor));
 					g2d.draw(new Line2D.Double(x, y, x, y));
 				} else if (myGraph.placeY(myLines[x][y])) {
