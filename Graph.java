@@ -11,12 +11,12 @@ public class Graph{
 		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1] - check.dVector[2];
 		double k = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - check.pVector[2];
-		// Change so that the SMALLER t value is returned
 		if(j*j - 4*i*k<0){
 			return -1;
 		}
 		double a = (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i);
 		double b = (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i);
+		//System.out.printf("%f %f\n",a,b);
 		boolean aTrue = true;
 		boolean bTrue = true;
 		double t = .5;
@@ -83,6 +83,11 @@ public class Graph{
 		}
 		double d = (-1)*fx*x + (-1)*fy*y + z;
 		double[] normVector = {-fx,-fy,1};
+		if(!zside){
+			normVector[0] = fx;
+			normVector[1] = fy;
+			normVector[2] = -1;
+		}
 		Line[][] vectors = new Line[500][500];
 		for(int a=0;a<500;a++){
 			for(int b=0;b<500;b++){
