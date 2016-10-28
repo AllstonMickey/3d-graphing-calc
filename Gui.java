@@ -8,7 +8,7 @@ import java.awt.geom.Point2D;
 import javax.swing.*;  
 
 public class Gui extends Window {
-	private static double myGraphX = 0.25, myGraphY = 0.25; // x and y coords of the graph viewing angle
+	private static double myGraphX = 0.225, myGraphY = 0.225; // x and y coords of the graph viewing angle
 	private static boolean zIsTop = true; // viewing angle is on top of the sphere (true)
 	
 	public Gui() {
@@ -35,8 +35,7 @@ public class Gui extends Window {
 			for (int y = 0; y < getWindowHeight(); ++y) {
 				double paraNum = myGraph.placePara(myLines[x][y]);
 				if (paraNum>0){
-					int numColor = (int)Math.round(255-(paraNum*200/2));
-					numColor = 100;
+					int numColor = (int)Math.round(paraNum*127);
 					g2d.setColor(new Color(numColor,numColor,numColor));
 					g2d.draw(new Line2D.Double(x, y, x, y));
 				} else if (myGraph.placeY(myLines[x][y])) {
@@ -80,7 +79,7 @@ public class Gui extends Window {
 		Action upAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				if (myGraphY < 1 - t && Math.sqrt(myGraphX*myGraphX + (myGraphY+t)*(myGraphY+t)) < 1) {
+				if (myGraphY < 1 - t && Math.sqrt(myGraphX*myGraphX + (myGraphY+t)*(myGraphY+t)) < 1 - t) {
 					myGraphY += 0.05;
 					f.repaint();
 				}
@@ -93,7 +92,7 @@ public class Gui extends Window {
 		Action downAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				if (myGraphY > -1 + 0.05 && Math.sqrt(myGraphX*myGraphX + (myGraphY-t)*(myGraphY-t)) < 1) {
+				if (myGraphY > -1 + 0.05 && Math.sqrt(myGraphX*myGraphX + (myGraphY-t)*(myGraphY-t)) < 1 - t) {
 					myGraphY -= 0.05;
 					f.repaint();
 				}
@@ -106,7 +105,7 @@ public class Gui extends Window {
 		Action rightAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				if (myGraphX < 1 - 0.05 && Math.sqrt((myGraphX+t)*(myGraphX+t) + myGraphY*myGraphY) < 1) {
+				if (myGraphX < 1 - 0.05 && Math.sqrt((myGraphX+t)*(myGraphX+t) + myGraphY*myGraphY) < 1 - t) {
 					myGraphX += 0.05;
 					f.repaint();
 				}
@@ -119,7 +118,7 @@ public class Gui extends Window {
 		Action leftAction = new AbstractAction() {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
-				if (myGraphX > -1 + 0.05 && Math.sqrt((myGraphX-t)*(myGraphX-t) + myGraphY*myGraphY) < 1) {
+				if (myGraphX > -1 + 0.05 && Math.sqrt((myGraphX-t)*(myGraphX-t) + myGraphY*myGraphY) < 1 - t) {
 					myGraphX -= 0.05;
 					f.repaint();
 				}

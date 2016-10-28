@@ -24,7 +24,7 @@ public class Graph{
 			aTrue = false;
 		}
 		if(Math.abs(b*check.dVector[0] + check.pVector[0]) >= t || Math.abs(b*check.dVector[1] + check.pVector[1]) >= t || Math.abs(b*check.dVector[2] + check.pVector[2]) >= t){
-			aTrue = false;
+			bTrue = false;
 		}
 		if(a<b){
 			if(aTrue){
