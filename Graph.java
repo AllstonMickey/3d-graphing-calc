@@ -40,32 +40,36 @@ public class Graph{
 		return -1;
 	}
 	// Uses cylinders instead of lines to graph axes
-	public static boolean placeX(Line check){
-		double a = check.dVector[1]*check.dVector[1] + check.dVector[2]*check.dVector[2];
-		double b = 2*check.dVector[1]*check.pVector[1] + 2*check.dVector[2]*check.pVector[2];
-		double c = check.pVector[1]*check.pVector[1] + check.pVector[2]*check.pVector[2] - .00001;
-		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5){
-			return true;
+	public static double placeAxis(Line check, int r, int s){
+		double a = check.dVector[r]*check.dVector[r] + check.dVector[s]*check.dVector[s];
+		double b = 2*check.dVector[r]*check.pVector[r] + 2*check.dVector[s]*check.pVector[s];
+		double c = check.pVector[r]*check.pVector[r] + check.pVector[s]*check.pVector[s] - .00001;
+		if(b*b - 4*a*c<0){
+			return -2;
 		}
-		return false;
-	}
-	public static boolean placeY(Line check){
-		double a = check.dVector[0]*check.dVector[0] + check.dVector[2]*check.dVector[2];
-		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[2]*check.pVector[2];
-		double c = check.pVector[0]*check.pVector[0] + check.pVector[2]*check.pVector[2] - .00001;
-		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5){
-			return true;
+		double e = (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a);
+		double f = (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a);
+		boolean aTrue = true;
+		boolean bTrue = true;
+		double t = .5;
+		if(Math.abs(e*check.dVector[0] + check.pVector[0]) >= t || Math.abs(e*check.dVector[1] + check.pVector[1]) >= t || Math.abs(e*check.dVector[2] + check.pVector[2]) >= t){
+			aTrue = false;
 		}
-		return false;
-	}
-	public static boolean placeZ(Line check){
-		double a = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
-		double b = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1];
-		double c = check.pVector[0]*check.pVector[0] + check.pVector[1]*check.pVector[1] - .00001;
-		if(b*b - 4*a*c > 0 && (-1*b-Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5 && (-1*b+Math.sqrt(b*b - 4*a*c))/(2*a)<=1.5){
-			return true;
+		if(Math.abs(f*check.dVector[0] + check.pVector[0]) >= t || Math.abs(f*check.dVector[1] + check.pVector[1]) >= t || Math.abs(f*check.dVector[2] + check.pVector[2]) >= t){
+			bTrue = false;
 		}
-		return false;
+		if(a<b){
+			if(aTrue){
+				return e;
+			}
+		}
+		if(bTrue){
+			return f;
+		}
+		if(aTrue){
+			return e;
+		}
+		return -2;
 	}
 	public static Line[][] genScreen(double x, double y, boolean zside){
 		if(Math.sqrt(x*x+y*y)>=1){

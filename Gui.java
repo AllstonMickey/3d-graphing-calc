@@ -34,17 +34,20 @@ public class Gui extends Window {
         for (int x = 0; x < getWindowWidth(); ++x) {
 			for (int y = 0; y < getWindowHeight(); ++y) {
 				double paraNum = myGraph.placePara(myLines[x][y]);
-				if (paraNum>0){
+				double xNum = myGraph.placeAxis(myLines[x][y],1,2);
+				double yNum = myGraph.placeAxis(myLines[x][y],0,2);
+				double zNum = myGraph.placeAxis(myLines[x][y],0,1);
+				if (paraNum>0 && paraNum<Math.abs(xNum) && paraNum<Math.abs(yNum) && paraNum<Math.abs(zNum)){
 					int numColor = (int)Math.round(paraNum*127);
 					g2d.setColor(new Color(numColor,numColor,numColor));
 					g2d.draw(new Line2D.Double(x, y, x, y));
-				} else if (myGraph.placeY(myLines[x][y])) {
+				} else if (yNum>0) {
 					g2d.setColor(new Color(200, 0, 0));
 					g2d.draw(new Line2D.Double(x, y, x, y));
-				} else if (myGraph.placeX(myLines[x][y])) {
+				} else if (xNum>0) {
 					g2d.setColor(new Color(0, 200, 0));
 					g2d.draw(new Line2D.Double(x, y, x, y));
-				} else if (myGraph.placeZ(myLines[x][y])) {
+				} else if (zNum>0) {
 					g2d.setColor(new Color(0, 0, 200));
 					g2d.draw(new Line2D.Double(x, y, x, y));
 				}
