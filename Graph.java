@@ -1,12 +1,56 @@
 import java.util.*;
 import java.io.*;
 import java.lang.Math;
-
+import javax.script.*;
 /*
  * Written by Kai Ergin
  */
 
 public class Graph{
+	public static double placeFunc(Line check){
+		double t = -1;
+		String equation = "3*x+2*y-1";
+		double amount = 2;
+		boolean finished = false;
+		double y = 1;
+		double x = 1;
+		double z = 1;
+		ScriptEngineManager manager = new ScriptEngineManager();
+		ScriptEngine engine = manager.getEngineByName("javascript");
+		for(int w = 0;w<10;w++){
+			x = t*check.dVector[0] + check.pVector[0];
+			y = t*check.dVector[1] + check.pVector[1];
+			z = t*check.dVector[2] + check.pVector[2];
+			double eval = 0;
+			try{
+				eval = (double)(Integer)engine.eval(equation);
+			} catch(Exception e){
+				System.out.println(e);
+			}
+			if(Math.abs(eval - z) < .001){
+				finished = true;
+				break;
+			}
+			if(eval>z){
+				t += amount;
+			}else{
+				t -= amount;
+			}
+			amount/=2;
+			if(Math.abs(t)>2){
+				System.out.println("Broken from out of bounds t value");
+				break;
+			}
+		}
+		if(finished){
+			if(Math.abs(x)>=.5 || Math.abs(y)>=.5 || Math.abs(z)>=.5){
+				return -1;
+			} else{
+				return t;
+			}
+		}
+		return -1;
+	}
 	public static double placePara(Line check){
 		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1] - check.dVector[2];
@@ -83,7 +127,6 @@ public class Graph{
 			z*=-1;
 			fx*=-1;
 			fy*=-1;
-			System.out.println("You chose the lower half of the sphere");
 		}
 		double d = (-1)*fx*x + (-1)*fy*y + z;
 		double[] normVector = {-fx,-fy,1};

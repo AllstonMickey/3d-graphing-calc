@@ -16,7 +16,6 @@ public class Gui extends Window {
 	}
 	
 	protected void paintComponent(Graphics g) {
-		System.out.println("paintComponent has been called!");
 		super.paintComponent(g);
 		Graphics2D g2d = (Graphics2D)g;
 		g2d.setColor(new Color(255, 255, 255));
@@ -34,6 +33,8 @@ public class Gui extends Window {
         for (int x = 0; x < getWindowWidth(); ++x) {
 			for (int y = 0; y < getWindowHeight(); ++y) {
 				double paraNum = myGraph.placePara(myLines[x][y]);
+				paraNum = myGraph.placeFunc(myLines[x][y]);
+				//paraNum = 0;
 				double xNum = myGraph.placeAxis(myLines[x][y],1,2);
 				double yNum = myGraph.placeAxis(myLines[x][y],0,2);
 				double zNum = myGraph.placeAxis(myLines[x][y],0,1);
@@ -71,7 +72,6 @@ public class Gui extends Window {
 			private static final long serialVersionUID = 1L;
 			@Override public void actionPerformed(ActionEvent e) {
 				zIsTop = !zIsTop;
-				System.out.println("z side switched");
 				f.repaint(); // redraw the Gui
 			}
 		};
