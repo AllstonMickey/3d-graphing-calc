@@ -6,8 +6,9 @@ import java.lang.Math;
  */
 
 public class Graph{
+	//Method to graph any equation of your choosing
 	public static double placeFunc(Line check){
-		double t = -1;
+		double t = 0;
 		double amount = 2;
 		boolean finished = false;
 		double y = 1;
@@ -17,7 +18,10 @@ public class Graph{
 			x = t*check.dVector[0] + check.pVector[0];
 			y = t*check.dVector[1] + check.pVector[1];
 			z = t*check.dVector[2] + check.pVector[2];
+			
+			//EQUATION
 			double eval = x*x + y*y;
+			
 			if(Math.abs(eval - z) < .001){
 				finished = true;
 				break;
@@ -28,9 +32,6 @@ public class Graph{
 				t -= amount;
 			}
 			amount/=2;
-			if(Math.abs(t)>2){
-				break;
-			}
 		}
 		if(finished){
 			if(Math.abs(x)>=.5 || Math.abs(y)>=.5 || Math.abs(z)>=.5){
@@ -41,6 +42,7 @@ public class Graph{
 		}
 		return -1;
 	}
+	//Method for graphing a paraboloid
 	public static double placePara(Line check){
 		double i = check.dVector[0]*check.dVector[0] + check.dVector[1]*check.dVector[1];
 		double j = 2*check.dVector[0]*check.pVector[0] + 2*check.dVector[1]*check.pVector[1] - check.dVector[2];
@@ -50,7 +52,6 @@ public class Graph{
 		}
 		double a = (-1*j+Math.sqrt(j*j - 4*i*k))/(2*i);
 		double b = (-1*j-Math.sqrt(j*j - 4*i*k))/(2*i);
-		//System.out.printf("%f %f\n",a,b);
 		boolean aTrue = true;
 		boolean bTrue = true;
 		double t = .5;
