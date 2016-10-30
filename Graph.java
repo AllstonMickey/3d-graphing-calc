@@ -1,7 +1,6 @@
 import java.util.*;
 import java.io.*;
 import java.lang.Math;
-import javax.script.*;
 /*
  * Written by Kai Ergin
  */
@@ -9,24 +8,16 @@ import javax.script.*;
 public class Graph{
 	public static double placeFunc(Line check){
 		double t = -1;
-		String equation = "3*x+2*y-1";
 		double amount = 2;
 		boolean finished = false;
 		double y = 1;
 		double x = 1;
 		double z = 1;
-		ScriptEngineManager manager = new ScriptEngineManager();
-		ScriptEngine engine = manager.getEngineByName("javascript");
-		for(int w = 0;w<10;w++){
+		for(int w = 0;w<15;w++){
 			x = t*check.dVector[0] + check.pVector[0];
 			y = t*check.dVector[1] + check.pVector[1];
 			z = t*check.dVector[2] + check.pVector[2];
-			double eval = 0;
-			try{
-				eval = (double)(Integer)engine.eval(equation);
-			} catch(Exception e){
-				System.out.println(e);
-			}
+			double eval = x*x + y*y;
 			if(Math.abs(eval - z) < .001){
 				finished = true;
 				break;
@@ -38,7 +29,6 @@ public class Graph{
 			}
 			amount/=2;
 			if(Math.abs(t)>2){
-				System.out.println("Broken from out of bounds t value");
 				break;
 			}
 		}
