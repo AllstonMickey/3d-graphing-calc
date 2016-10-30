@@ -54,6 +54,8 @@ public class Gui extends Window {
 				}
 			}
 		}
+		System.out.println(myGraph.myT);
+		myGraph.myT = 0;
 	}
 	
 	private static void initKeyBinds(JFrame f) {

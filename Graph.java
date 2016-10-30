@@ -7,6 +7,7 @@ import java.lang.Math;
 
 public class Graph{
 	//Method to graph any equation of your choosing
+	public static int myT = 0;
 	public static double placeFunc(Line check){
 		double t = 0;
 		double amount = 2;
@@ -14,13 +15,13 @@ public class Graph{
 		double y = 1;
 		double x = 1;
 		double z = 1;
-		for(int w = 0;w<15;w++){
+		for(int w = 0;w<20;w++){
 			x = t*check.dVector[0] + check.pVector[0];
 			y = t*check.dVector[1] + check.pVector[1];
 			z = t*check.dVector[2] + check.pVector[2];
 			
 			//EQUATION
-			double eval = x*x + y*y;
+			double eval = x*y;
 			
 			if(Math.abs(eval - z) < .001){
 				finished = true;
@@ -39,6 +40,8 @@ public class Graph{
 			} else{
 				return t;
 			}
+		} else{
+			myT++;
 		}
 		return -1;
 	}
